@@ -1,0 +1,21 @@
+<form action="/tasks/<%= @task.id %>" method="post" class='jumbotron col-md-6 col-md-offset-3'>
+	<input type='hidden' name="_method" value='put'>
+	
+	<div class='form-group'>
+		<label class='control-label'>Title</label>
+		<input type='text' name='task[title]' class='form-control' value="<%= @task.title%>">
+	</div>
+	<div class='form-group'>
+		<label class='control-label'>Description</label>
+		<textarea name='task[description]' class='form-control'><%= @task.description %></textarea>
+	</div>
+	<div class='form-group'>
+		<label class='control-label'>Priority</label>
+		<select name='task[priority]' class='form-control'>
+			<option value="low" <%= 'selected' if @task.priority == 'low' %>>low</option>
+			<option value="normal"<%= 'selected' if @task.priority == 'normal' %>>normal</option>
+			<option value="high"<%= 'selected' if @task.priority == 'high' %>>high</option>
+		</select>
+	</div>
+	<button type='submit' class='btn btn-success'>Save changes</button>
+</form>

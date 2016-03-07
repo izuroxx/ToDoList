@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>ToDoList</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/reset.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  
+
+  </head>
+  <body>
+    <nav class='navbar navbar-default'>
+      <div class='container'>
+        <a class="navbar-brand" href="/">ToDoList</a>
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
+            <li><a href="/tasks">All tasks</a></li>
+            <li><a href="/tasks/in_progress">Tasks not completed</a></li>
+            <li><a href="/tasks/finished">Tasks completed</a></li>
+            <li><a href="/tasks/new">New task</a></li>
+            <li><a href="/logout">Log out</a></li>
+          <% else %>
+            <li><a href="/signup">Sign up!</a></li>
+            <li><a href="/login">Log in</a></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    <main>
+
+      <section id='flash_message'>
+        <% if flash[:notice] %>
+          <p class='alert alert-success'><%= flash[:notice] %></p>
+        <% end %>
+        <% if flash[:error] %>
+          <% for error in flash[:error] %>
+            <p class='alert alert-error'><%= error %></p>
+          <% end %>
+        <% end %>
+      </section>
+      <div class='container'>
+        <%= yield %>
+      </div>
+    </main>
+  </body>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="/js/bootstrap.min.js"></script>
+</html>

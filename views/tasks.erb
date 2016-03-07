@@ -1,0 +1,39 @@
+<div class='jumbotron'>
+	<table class='table table-hover'>
+		<thead>
+			<tr>
+				<th colspan="5">List of tasks</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for task in @tasks %>
+				<tr>
+					<td class='col-md-1'>
+						<%= task.id %>
+					<td class='col-md-1'>
+						<%= task.priority %>
+					</td>
+					<td class='col-md-9'>
+						<a href='/tasks/<%= task.id %>'><%= task.title %></a>
+					</td>
+					<td class='col-md-1'>
+						<a class='btn btn-success' href='/tasks/<%= task.id %>/edit'>edit</a>
+					</td>
+					<td class='col-md-1'>
+						<% if task.finished %>
+							<p>finished!</p>
+						<% else %>			
+						<a class='btn btn-default' href='/tasks/<%= task.id %>/complete'>finished!</a>
+						<% end %>
+					</td>
+					<td class='col-md-1'>
+						<form action="/tasks/<%= task.id %>" method='post'>
+							<input type='hidden' name='_method' value='delete'>
+							<button class='btn btn-danger' type='submit'>delete</button>
+						</form>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
